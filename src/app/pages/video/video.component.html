@@ -1,0 +1,13 @@
+<div class="video-page">
+  <div class="video-card">
+    <div class="video-wrapper">
+      <button mat-icon-button class="back-btn" aria-label="Back" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <video class="birthday-video" controls autoplay>
+        <source [src]="videoSrc" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</div>

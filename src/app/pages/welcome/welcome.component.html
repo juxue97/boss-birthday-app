@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+  <mat-card #restrictionContainer class="prompt-card shadow-lg" [class.tv-closing]="isClosing">
+    <mat-card-content>
+      <div class="text-center">
+        <h1 class="title mb-3">Hi Boss 👋</h1>
+
+        <p class="message mb-2">Please enjoy the video we prepared for you.</p>
+
+        <p class="ps-message mb-4">(P.S promise you will not get angry watching this show)</p>
+
+        <p class="instruction mb-4">
+          Kindly select <strong>"Yes"</strong> if you wish to continue
+          <br />
+          <span class="small-text">(you can try clicking "No" as well)</span>
+        </p>
+
+        <div class="button-container">
+          <button mat-raised-button color="primary" class="yes-btn" (click)="onYesClick()">
+            Yes
+          </button>
+
+          <span class="no-btn-placeholder">
+            <button
+              #noButton
+              mat-raised-button
+              color="warn"
+              class="no-btn"
+              [class.no-btn-moving]="hasNoButtonMoved"
+              [style.left.px]="hasNoButtonMoved ? noButtonPosition.x : null"
+              [style.top.px]="hasNoButtonMoved ? noButtonPosition.y : null"
+              (mouseenter)="moveNoButton()"
+              (click)="moveNoButton()"
+            >
+              No
+            </button>
+          </span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

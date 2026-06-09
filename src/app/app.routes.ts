@@ -1,3 +1,17 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: 'welcome',
+    loadComponent: () =>
+      import('./pages/welcome/welcome.component').then((m) => m.AppWelcomeComponent),
+  },
+  {
+    path: 'video',
+    loadComponent: () => import('./pages/video/video.component').then((m) => m.AppVideoComponent),
+  },
+  {
+    path: '**',
+    redirectTo: 'welcome',
+  },
+];

@@ -1,1 +1,74 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+@import 'bootstrap/scss/bootstrap';
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --color-primary: #044089;
+  --color-secondary: #0858ba;
+
+  --color-danger: #dc3545;
+  --color-success: #198754;
+  --color-warning: #ffc107;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-grey-50: #f8f9fa;
+  --color-grey-100: #e9ecef;
+  --color-grey-200: #dee2e6;
+  --color-grey-300: #ced4da;
+  --color-grey-500: #6c757d;
+  --color-grey-700: #495057;
+  --color-grey-900: #212529;
+
+  --color-primary-rgb: 4, 64, 137;
+  --color-secondary-rgb: 8, 88, 186;
+
+  --color-danger-rgb: 220, 53, 69;
+  --color-success-rgb: 25, 135, 84;
+  --color-warning-rgb: 255, 193, 7;
+
+  --color-white-rgb: 255, 255, 255;
+  --color-black-rgb: 0, 0, 0;
+
+  --color-grey-100-rgb: 233, 236, 239;
+  --color-grey-500-rgb: 108, 117, 125;
+  --color-grey-900-rgb: 33, 37, 41;
+}
