@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, Signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.scss',
 })
-export class AppWelcomeComponent {
+export class AppWelcomeComponent implements OnDestroy {
   imagePersonConfigs: Signal<ImageConfigs[]>;
 
   @ViewChild('restrictionContainer', { read: ElementRef })
@@ -30,11 +30,21 @@ export class AppWelcomeComponent {
     y: 0,
   };
 
+  private idleTimer: ReturnType<typeof setTimeout> | null = null;
+  private readonly idleTimeoutMs = 60_000;
+
   constructor(
     private router: Router,
     private commonService: CommonService,
   ) {
     this.imagePersonConfigs = this.commonService.imagePersonConfigs;
+    this.resetIdleTimer();
+  }
+
+  ngOnDestroy(): void {
+    if (this.idleTimer) {
+      clearTimeout(this.idleTimer);
+    }
   }
 
   get firstPersonImageSrc(): string {
@@ -76,5 +86,21 @@ export class AppWelcomeComponent {
 
   private getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  @HostListener('window:mousemove')
+  @HostListener('window:mousedown')
+  @HostListener('window:keydown')
+  @HostListener('window:touchstart')
+  resetIdleTimer(): void {
+    if (this.isClosing) return;
+
+    if (this.idleTimer) {
+      clearTimeout(this.idleTimer);
+    }
+
+    this.idleTimer = setTimeout(() => {
+      this.router.navigate(['/landing']);
+    }, this.idleTimeoutMs);
   }
 }
