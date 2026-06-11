@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
+import { ImageConfigs } from '../../models/common.model';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-welcome',
@@ -11,6 +13,8 @@ import { Router } from '@angular/router';
   styleUrl: './welcome.component.scss',
 })
 export class AppWelcomeComponent {
+  imagePersonConfigs: Signal<ImageConfigs[]>;
+
   @ViewChild('restrictionContainer', { read: ElementRef })
   restrictionContainer!: ElementRef<HTMLElement>;
 
@@ -26,7 +30,16 @@ export class AppWelcomeComponent {
     y: 0,
   };
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private commonService: CommonService,
+  ) {
+    this.imagePersonConfigs = this.commonService.imagePersonConfigs;
+  }
+
+  get firstPersonImageSrc(): string {
+    return this.imagePersonConfigs()[0]?.src ?? '';
+  }
 
   onYesClick(): void {
     this.showVideoPlaceholder = true;
