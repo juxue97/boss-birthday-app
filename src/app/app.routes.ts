@@ -2,6 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'landing',
+    loadComponent: () =>
+      import('./pages/landing/landing.component').then((m) => m.AppLandingComponent),
+  },
+  {
     path: 'welcome',
     loadComponent: () =>
       import('./pages/welcome/welcome.component').then((m) => m.AppWelcomeComponent),
@@ -12,6 +17,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'welcome',
+    redirectTo: 'landing',
   },
 ];

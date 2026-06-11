@@ -1,0 +1,16 @@
+<div class="dvd-container" #dvdContainer (click)="onScreenClick($event)">
+  <canvas #waveCanvas class="wave-canvas"></canvas>
+
+  <img
+    *ngIf="currentImage"
+    #dvdImage
+    class="dvd-logo"
+    [src]="currentImage.src"
+    [alt]="currentImage.description"
+    [ngStyle]="{
+      transform: 'translate(' + x + 'px, ' + y + 'px)',
+    }"
+  />
+
+  <div class="fade-overlay" [class.hidden]="isEnterFadeDone" [class.active]="isExitFading"></div>
+</div>
