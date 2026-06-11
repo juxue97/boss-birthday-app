@@ -2,7 +2,16 @@
   <mat-card #restrictionContainer class="prompt-card shadow-lg" [class.tv-closing]="isClosing">
     <mat-card-content>
       <div class="text-center">
-        <h1 class="title mb-3">Hi Boss 👋</h1>
+        <h1 class="title mb-3">
+          Hi B<span class="boss-icon-wrapper">
+            <img
+              *ngIf="firstPersonImageSrc"
+              class="boss-icon"
+              [src]="firstPersonImageSrc"
+              alt="Boss icon"
+            /> </span
+          >ss
+        </h1>
 
         <p class="message mb-2">Please enjoy the video we prepared for you.</p>
 
