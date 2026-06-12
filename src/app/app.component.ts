@@ -32,8 +32,8 @@ export class App implements OnDestroy {
       clearTimeout(this.idleTimer);
     }
 
-    this.idleTimer = setTimeout(() => {
-      this.router.navigate(['/landing']);
-    }, this.idleTimeoutMs);
+    // this.idleTimer = setTimeout(() => {
+    //   this.router.navigate(['/landing']);
+    // }, this.idleTimeoutMs);
   }
 }
