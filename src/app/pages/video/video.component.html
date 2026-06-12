@@ -5,7 +5,7 @@
         <mat-icon>arrow_back</mat-icon>
       </button>
 
-      <video class="birthday-video" controls autoplay>
+      <video #birthdayVideo class="birthday-video" controls autoplay muted playsinline>
         <source [src]="videoSrc" type="video/mp4" />
       </video>
     </div>

@@ -47,7 +47,7 @@ export class CommonService {
 
     this._imagePersonConfigs.set([
       {
-        src: 'assets/images/person/CK.png',
+        src: 'assets/images/person/CK_HEAD.png',
         description: 'ck',
         css: '',
       },
