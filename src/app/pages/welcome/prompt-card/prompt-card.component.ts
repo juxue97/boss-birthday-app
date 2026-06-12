@@ -1,26 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, Signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
-import { ImageConfigs } from '../../models/common.model';
-import { CommonService } from '../../services/common.service';
-import { AppPromptCardComponent } from './prompt-card/prompt-card.component';
-import { AppBackgroundComponent } from './background/background.component';
+import { ImageConfigs } from '../../../models/common.model';
+import { CommonService } from '../../../services/common.service';
 
 @Component({
-  selector: 'app-welcome',
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatCardModule,
-    AppBackgroundComponent,
-    AppPromptCardComponent,
-  ],
-  templateUrl: './welcome.component.html',
-  styleUrl: './welcome.component.scss',
+  selector: 'app-prompt-card',
+  imports: [CommonModule, MatButtonModule, MatCardModule],
+  templateUrl: './prompt-card.component.html',
+  styleUrl: './prompt-card.component.scss',
 })
-export class AppWelcomeComponent {
+export class AppPromptCardComponent {
   imagePersonConfigs: Signal<ImageConfigs[]>;
 
   @ViewChild('restrictionContainer', { read: ElementRef })
@@ -29,7 +21,6 @@ export class AppWelcomeComponent {
   @ViewChild('noButton', { read: ElementRef })
   noButton!: ElementRef<HTMLButtonElement>;
 
-  showVideoPlaceholder: boolean = false;
   hasNoButtonMoved: boolean = false;
   isClosing: boolean = false;
 
@@ -49,13 +40,7 @@ export class AppWelcomeComponent {
     return this.imagePersonConfigs()[0]?.src ?? '';
   }
 
-  get backgroundPersonImages(): ImageConfigs[] {
-    return this.imagePersonConfigs().slice(1);
-  }
-
   onYesClick(): void {
-    this.showVideoPlaceholder = true;
-
     this.isClosing = true;
 
     setTimeout(() => {
