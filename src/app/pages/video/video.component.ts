@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { VideoConfigs } from '../../models/common.model';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-video',
@@ -12,9 +14,14 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './video.component.scss',
 })
 export class AppVideoComponent implements AfterViewInit {
-  constructor(private router: Router) {}
+  videoConfigs: Signal<VideoConfigs>;
 
-  videoSrc: string = 'assets/videos/ck_birthday.mov';
+  constructor(
+    private router: Router,
+    private commonService: CommonService,
+  ) {
+    this.videoConfigs = this.commonService.videoConfigs;
+  }
 
   @ViewChild('birthdayVideo') birthdayVideo!: ElementRef<HTMLVideoElement>;
 
@@ -24,6 +31,10 @@ export class AppVideoComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.playFullscreen();
+  }
+
+  get currentVideo(): VideoConfigs | null {
+    return this.videoConfigs() ?? null;
   }
 
   playFullscreen(): void {

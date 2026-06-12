@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { ImageConfigs } from '../models/common.model';
+import { ImageConfigs, VideoConfigs } from '../models/common.model';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +7,14 @@ import { ImageConfigs } from '../models/common.model';
 export class CommonService {
   private _imageLogoConfigs = signal<ImageConfigs[]>([]);
   private _imagePersonConfigs = signal<ImageConfigs[]>([]);
+  private _videoConfigs = signal<VideoConfigs>({
+    src: '',
+    description: '',
+  });
 
   public readonly imageLogoConfigs = this._imageLogoConfigs.asReadonly();
   public readonly imagePersonConfigs = this._imagePersonConfigs.asReadonly();
+  public readonly videoConfigs = this._videoConfigs.asReadonly();
 
   constructor() {
     this._imageLogoConfigs.set([
@@ -52,5 +57,10 @@ export class CommonService {
         css: '',
       },
     ]);
+
+    this._videoConfigs.set({
+      src: 'assets/videos/ck_birthday.mov',
+      description: 'boss birthday video',
+    });
   }
 }
