@@ -5,7 +5,7 @@ import { IdleService } from '../../services/idle.service';
 export const idleGuard: CanActivateFn = (route) => {
   const idleService = inject(IdleService);
 
-  const timeoutMs = route.data['idleTimeoutMs'] ?? 10_000;
+  const timeoutMs = route.data['idleTimeoutMs'] ?? 60_000;
   const redirectTo = route.data['idleRedirectTo'] ?? '/landing';
 
   idleService.startWatching(timeoutMs, redirectTo);
