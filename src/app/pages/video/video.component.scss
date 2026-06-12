@@ -1,13 +1,13 @@
 .video-page {
   min-height: 100vh;
   background-color: #e9ecef;
-  padding: 0;
+  padding: 1px 0;
 }
 
 .video-card {
   width: 100%;
-  // height: calc(100vh - 48px);
-  height: 100%;
+  height: calc(100vh - 2px);
+  // height: 100%;
   // border-radius: 16px;
   overflow: hidden;
   background-color: var(--color-white);
