@@ -78,7 +78,7 @@ export class CommonService {
       },
       {
         src: 'assets/images/person/clarisa.png',
-        description: 'clarisa',
+        description: 'clarissa',
         css: '',
       },
       {
@@ -128,12 +128,12 @@ export class CommonService {
       },
       {
         src: 'assets/images/person/leaneB.png',
-        description: 'big leane',
+        description: 'big leanne',
         css: '',
       },
       {
         src: 'assets/images/person/leaneS.png',
-        description: 'small leane',
+        description: 'small leanne',
         css: '',
       },
       {
