@@ -25,8 +25,8 @@ export class AppLandingComponent implements AfterViewInit, OnDestroy {
 
   x = 100;
   y = 100;
-  velocityX = 2.25;
-  velocityY = 2.25;
+  velocityX = 4.25;
+  velocityY = 4.25;
   isEnterFadeDone = false;
   isExitFading = false;
 
